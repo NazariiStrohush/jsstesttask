@@ -2,6 +2,14 @@ body {
   background: #eee;
   color: #666666; }
 
+#map.mapbox {
+	position: relative;
+	width: 800px;
+	height: 200px;
+	margin: 0 auto;
+	padding: 0;
+}
+
 .navbar {
   margin-bottom: 10px; }
   /* line 32, ../sass/style.scss */
@@ -11,26 +19,10 @@ body {
     -ms-border-radius: 0px 0px 3px 3px;
     -o-border-radius: 0px 0px 3px 3px;
     border-radius: 0px 0px 3px 3px; }
-#map.mapbox {
-    position: inherit;
-}
+
 .container{
 	padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-}
-
-#spinner {
-  height: 300px; }
-
-.errors{
-  position: fixed;
-  z-index: 10000;
-  padding: 10px;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  pointer-events: none;
 }
