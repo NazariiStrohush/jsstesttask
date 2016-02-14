@@ -13,26 +13,6 @@ Template.main.onRendered(function () {
           container: 'map',
           style: 'mapbox://styles/nazariistrohush/cikiu7r5c005kcilu1v5egwhw',
         });
-        //map.setCenter("35.689488","35.689488");
       }
     });
-  });
-
-Template.main.events({
-  'click .s4': function(e) {
-    e.preventDefault();
-    params = {
-      ll: "35.68949, 139.69171", //Your location use the geo result here
-      query: "school",
-      limit: 10, //the limit of the query
-    }
-
-    Foursquare.find(params, function(error, result) {
-      if (error) {
-        console.log(error);
-      }
-      console.log(result);
-    });
-
-    }
   });
