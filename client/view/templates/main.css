@@ -10,6 +10,10 @@ body {
 	padding: 0;
 }
 
+.qu {
+    width: 20px;
+}
+
 .navbar {
   margin-bottom: 10px; }
   /* line 32, ../sass/style.scss */

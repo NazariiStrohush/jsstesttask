@@ -1,6 +1,9 @@
 <template name = "main">
    <div class="container">
-   {{>header}}
+   {{> header}}
+   {{#each all_queries}}
+   		{{> query_item}}
+   {{/each}}
     	<div class="container">
 	    	<div id="map" class="mapbox"></div>
     	</div>
