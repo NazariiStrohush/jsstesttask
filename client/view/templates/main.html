@@ -1,12 +1,21 @@
 <template name = "main">
    <div class="container">
    {{> header}}
+   <div class="container">
    {{#each all_queries}}
    		{{> query_item}}
    {{/each}}
-    	<div class="container">
-	    	<div id="map" class="mapbox"></div>
-    	</div>
-    	<button type="button" class="s4 btn btn-default">Foursqare!</button>
+   </div>
+   <div class="container">
+     <div class="input-group">
+        <input type="text" class="form-control" placeholder="Пошук місць">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button s4">Пошук</button>
+        </span>
+      </div>
+    </div>
+  	<div class="container">
+    	<div id="map" class="mapbox"></div>
+  	 </div>
     </div>
 </template>

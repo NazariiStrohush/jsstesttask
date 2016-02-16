@@ -4,14 +4,10 @@ body {
 
 #map.mapbox {
 	position: relative;
-	width: 800px;
+	width: 70%;
 	height: 250px;
 	margin: 0 auto;
 	padding: 0;
-}
-
-.qu {
-    width: 20px;
 }
 
 .navbar {
@@ -24,9 +20,17 @@ body {
     -o-border-radius: 0px 0px 3px 3px;
     border-radius: 0px 0px 3px 3px; }
 
+.input-group{
+  margin-left: 14%;
+  margin-right: 14%;
+}
+
 .container{
+  position: inherit;
 	padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
