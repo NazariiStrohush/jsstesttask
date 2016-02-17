@@ -1,3 +1,8 @@
 Meteor.publish('queries', function() {
-  return Queries.find();
+	if(this.userId) {
+		return Queries.find({userId: this.userId});
+	}
+});
+Meteor.publish('venues', function() {
+	return Venues.find();
 });

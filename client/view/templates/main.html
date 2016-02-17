@@ -1,21 +1,42 @@
 <template name = "main">
    <div class="container">
-   {{> header}}
-   <div class="container">
-   {{#each all_queries}}
-   		{{> query_item}}
-   {{/each}}
-   </div>
-   <div class="container">
-     <div class="input-group">
-        <input type="text" class="form-control" placeholder="Пошук місць">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button s4">Пошук</button>
-        </span>
+     {{> header}}
+     <div class="container">
+     {{#each all_queries}}
+     		{{> query_item}}
+     {{/each}}
+     </div>
+     <div class="container">
+       <div class="input-group">
+          <input type="text" class="form-control tquery" placeholder="Пошук місць">
+          <span class="input-group-btn">
+            <button class="btn btn-default" id = "btn" type="button">Пошук</button>
+          </span>
+        </div>
       </div>
-    </div>
-  	<div class="container">
-    	<div id="map" class="mapbox"></div>
-  	 </div>
+    	<div class="container">
+      	<div id="map" class="mapbox"></div>
+    	</div>
+      <div class="container">
+        <div class="panel panel-default">
+          <div class="panel-heading" id = "res">Результати пошуку</div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Об'єкт</th>
+                <th>Місто</th>
+                <th>Широта</th>
+                <th>Довгота</th>
+                <th>Адреса</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each all_venues}}
+                {{> venues_item}}
+              {{/each}}
+            </tbody>
+          </table>
+          </div>
+        </div>
     </div>
 </template>
