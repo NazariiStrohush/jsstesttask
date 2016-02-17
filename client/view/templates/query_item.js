@@ -5,11 +5,11 @@ Template.query_item.helpers({
 	}
 });
 
-/*Template.query_item.events({
+Template.query_item.events({
 	"click .delete": function(e){
 		Meteor.call('removeQuery', this._id, function(error, result){
 			if(error)
 				console.log(error);
-		})
+		});
 	}
-});*/
+});
