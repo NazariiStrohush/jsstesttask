@@ -21,6 +21,16 @@ Template.main.onCreated(function() {
 });
 
 Template.main.events({
+  'click #buttonDownloadCSV': function(e) {
+    var nameFile = 'fileDownloaded.csv';
+    Meteor.call('downloadCSV', function(err, fileContent) {
+      if(fileContent){
+        var blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, nameFile);
+      }
+  });
+  },
+  
   "click #btn": function(e){
     e.preventDefault();
     var query_text = $(e.target).parents().find(".tquery").val();
