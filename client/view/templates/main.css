@@ -2,7 +2,7 @@ body {
   background: #eee;
   color: #666666; }
 
-#map.mapbox {
+.map-container {
 	position: relative;
 	width: 70%;
 	height: 250px;

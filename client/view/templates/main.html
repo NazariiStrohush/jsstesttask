@@ -14,9 +14,9 @@
           </span>
         </div>
       </div>
-    	<div class="container">
-      	<div id="map" class="mapbox"></div>
-    	</div>
+    	<div class="map-container">
+        {{> googleMap name="JSSMap" options=MapOptions}}
+      </div>
       <div class="container">
         <div class="panel panel-default">
           <div class="panel-heading" id = "res">Результати пошуку</div>

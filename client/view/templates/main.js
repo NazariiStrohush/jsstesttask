@@ -1,21 +1,23 @@
-map = null;
-Template.main.onRendered(function () {
-    Mapbox.debug = true;
-    Mapbox.load({
-      gl: true
-    });
+Template.main.onRendered(function() {
+  GoogleMaps.load();
+});
 
-    this.autorun(function () {
-      
-      if (Mapbox.loaded()) {
-        mapboxgl.accessToken = 'pk.eyJ1IjoibmF6YXJpaXN0cm9odXNoIiwiYSI6ImNpa2lyMXp6czAwNDF3am00ejhvcnZzcWQifQ.D1neZSb0jjMlVM0GArJ80w';
-        map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/nazariistrohush/cikiu7r5c005kcilu1v5egwhw',
-        });
-      }
-    });
+Template.main.helpers({
+  MapOptions: function() {
+    if (GoogleMaps.loaded()) {
+      return {
+        center: new google.maps.LatLng(35.6895, 139.69171),
+        zoom: 8
+      };
+    }
+  }
+});
+
+Template.main.onCreated(function() {
+  GoogleMaps.ready('JSSMap', function(map) {
+    
   });
+});
 
 Template.main.events({
   "click #btn": function(e){
@@ -57,6 +59,11 @@ Template.main.events({
         queryResult = result.response.venues;
         queryResult.forEach(function(venue,i){
         
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(venue.location.lat, venue.location.lng),
+          map: GoogleMaps.maps.JSSMap.instance
+        });
+
         var venueItem = {
             venueName: venue.name,
             city: venue.location.city,
