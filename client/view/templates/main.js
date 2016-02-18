@@ -1,3 +1,4 @@
+map = null;
 Template.main.onRendered(function() {
   GoogleMaps.load();
 });
@@ -63,6 +64,15 @@ Template.main.events({
           position: new google.maps.LatLng(venue.location.lat, venue.location.lng),
           map: GoogleMaps.maps.JSSMap.instance
         });
+
+        var infowindow = new google.maps.InfoWindow();
+        
+        google.maps.event.addListener(marker, 'click', (function(marker) {
+          return function() {
+            infowindow.setContent(venue.name);
+            infowindow.open(GoogleMaps.maps.JSSMap.instance, marker);
+          }
+        })(marker));
 
         var venueItem = {
             venueName: venue.name,
