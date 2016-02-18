@@ -1,4 +1,5 @@
 map = null;
+geojson = [];
 Template.main.onRendered(function () {
     Mapbox.debug = true;
     Mapbox.load({
@@ -20,6 +21,7 @@ Template.main.onRendered(function () {
 Template.main.events({
   "click #btn": function(e){
     e.preventDefault();
+
     var query_text = $(e.target).parents().find(".tquery").val();
     params = {
       ll: "35.6895, 139.69171",
@@ -27,9 +29,7 @@ Template.main.events({
       limit: 5
     }
 
-  Meteor.call('removeAllVenues', function(error){
-    console.log(error);
-  })
+  Meteor.call('removeAllVenues');
 
   Foursquare.find(params, function(error, result) {
 
@@ -37,8 +37,6 @@ Template.main.events({
       console.log(error);
     else{
       if(result.response.venues.length > 0){
-        
-        console.log(result);
 
         venue = result.response.venues[0];
 
@@ -56,7 +54,23 @@ Template.main.events({
 
         queryResult = result.response.venues;
         queryResult.forEach(function(venue,i){
-        
+
+        geojson.push({
+          "type": "Feature",
+          "geometry": {
+              "type": "Point",
+              "coordinates": [venue.location.lat, venue.location.lng]
+          },
+          "properties": {
+              "title": venue.name,
+              "marker-size": "large",
+              "marker-symbol": "marker"
+          }
+        });
+
+        if(venue.location.city === undefined)
+          venue.location.city = '';
+
         var venueItem = {
             venueName: venue.name,
             city: venue.location.city,
@@ -68,10 +82,24 @@ Template.main.events({
         Meteor.call('insertVenue', venueItem, function(error, result) {
           if(error)
             console.log(error);
-          else
-            console.log(result);
         });
         });
+        console.log(geojson);
+
+        map.addSource("markers", {
+          "type": "geojson",
+          "data": {
+            "type": "FeatureCollection",
+            "features": geojson
+        }
+        });
+
+        map.addLayer({
+          "id": "markers",
+          "type": "symbol",
+          "source": "markers",
+        });
+
       }
     }
   });
